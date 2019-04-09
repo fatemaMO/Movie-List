@@ -1,34 +1,53 @@
 <div class="moviInfo">
   <div class="left">
     <h1 class="active">
-      list of Movies 
-      </h1>
-    
-    <ul  class="list-group">
+      list of Movies
+    </h1>
+
+    <ul class="list-group">
       <li class="list-group-item" *ngFor="let movie of movies;  let i = index " (click)="onSelect(movie)">
-          <h1>{{movie.moviName}}</h1>
-          <button class="pull-right btn btn-sm btn-danger" (click)="removeMovie(movie, i)">Delete</button>
-         
-        </li>
+        <h1>{{movie.moviName}}</h1>
+        <button class="pull-right btn btn-sm btn-danger" (click)="removeMovie(movie, i)">Delete</button>
+
+      </li>
     </ul>
+    <br>
+    <hr>
+    <form  (ngSubmit)="getDataForm(formData)" #formData="ngForm">
+      <div class="form-group">
+        <h1 class="active" >Add New Movie</h1>
+        <label>Movi Name</label>
+        <input type="text" class="form-control" name="moviName" ngModel > 
+        <br>
+        <label>Rate</label>
+        <input type="number" class="form-control" name="rate" ngModel>
+        <br>
+        <label>Director</label>
+        <input type="text" class="form-control" name="dirname" ngModel>
+        <br>
+        <label>Writer</label>
+        <input type="text" class="form-control" name="autrname" ngModel>
+        <br>
+        <button type="submit" class="btn btn-primary">add</button>
+      </div>
+    </form>
   </div>
   <div class="right">
     <div *ngIf="selectedMovie">
-            <div class="right">
-                <h1 class="active">{{selectedMovie.moviName}}</h1>
-                <P>{{selectedMovie.rate}} <img src={{selectedMovie.rateImg}} width=25px; /></P>
-                <P><span>Director:</span>{{selectedMovie.dirname}}</P>
-            
-                <P><span> Writer :</span>{{selectedMovie.autrname}}</P>
-                <P><span>Actors:</span></P>
-                <ul class="list-group" *ngFor="let actors of selectedMovie.myArray; ">
-                  <li class="list-group-item list-group-item-secondary"> {{actors}},</li>
-                </ul>
-              </div>
-              <div class="leftr">
-                <img src={{selectedMovie.moviImg}} width=300px; height=450px; />
-              </div>
-  </div>
-  <div class="right">
-</div>
+      <div class="right">
+        <h1 class="active">{{selectedMovie.moviName}}</h1>
+        <P>{{selectedMovie.rate}} <img src={{selectedMovie.rateImg}} width=25px; /></P>
+        <P><span>Director:</span>{{selectedMovie.dirname}}</P>
 
+        <P><span> Writer :</span>{{selectedMovie.autrname}}</P>
+        <P><span>Actors:</span></P>
+        <ul class="list-group" *ngFor="let actors of selectedMovie.myArray; ">
+          <li class="list-group-item list-group-item-secondary"> {{actors}},</li>
+        </ul>
+      </div>
+      <div class="leftr">
+        <img src={{selectedMovie.moviImg}} width=300px; height=450px; />
+      </div>
+    </div>
+    <div class="right">
+    </div>
